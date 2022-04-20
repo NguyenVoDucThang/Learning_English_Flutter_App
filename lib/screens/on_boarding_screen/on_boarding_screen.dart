@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:learning_english_flutter_app/models/on_boarding_screen/data/slide_model.dart';
-import 'package:learning_english_flutter_app/models/on_boarding_screen/widgets/bottom_sheet_item.dart';
-import 'package:learning_english_flutter_app/models/on_boarding_screen/widgets/slide_tile.dart';
+import 'package:learning_english_flutter_app/models/slide_model.dart';
+import 'package:learning_english_flutter_app/widgets/on_boarding_widget/bottom_sheet_item.dart';
+import 'package:learning_english_flutter_app/widgets/on_boarding_widget/slide_tile.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);

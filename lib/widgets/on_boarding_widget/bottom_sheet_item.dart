@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning_english_flutter_app/models/on_boarding_screen/data/slide_model.dart';
-import 'package:learning_english_flutter_app/models/on_boarding_screen/widgets/page_index_indicator.dart';
+import 'package:learning_english_flutter_app/models/slide_model.dart';
+import 'package:learning_english_flutter_app/widgets/on_boarding_widget/page_index_indicator.dart';
 
 class BottomSheetItem extends StatelessWidget {
   final List<SlideModel> slides;

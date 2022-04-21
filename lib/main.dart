@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:learning_english_flutter_app/screens/login_screen/login_screen.dart';
+import 'package:learning_english_flutter_app/screens/login_screen/sign_up_screen.dart';
+import 'package:learning_english_flutter_app/screens/on_boarding_screen/welcome_screen.dart';
 
 import 'screens/on_boarding_screen/on_boarding_screen.dart';
 
@@ -22,6 +25,12 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(fontSize: 14.0, fontFamily: 'OpenSans'),
         ),
       ),
+      initialRoute: '/',
+      routes: {
+        WelcomeScreen.routeName: (context) => const WelcomeScreen(),
+        LoginScreen.routeName: (context) => const LoginScreen(),
+        SignUpScreen.routeName: (context) => const SignUpScreen(),
+      },
       home: const MyHomePage(),
     );
   }

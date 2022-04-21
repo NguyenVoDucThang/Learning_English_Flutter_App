@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learning_english_flutter_app/models/slide_model.dart';
+import 'package:learning_english_flutter_app/screens/on_boarding_screen/welcome_screen.dart';
 import 'package:learning_english_flutter_app/widgets/on_boarding_widget/bottom_sheet_item.dart';
 import 'package:learning_english_flutter_app/widgets/on_boarding_widget/slide_tile.dart';
 
@@ -48,19 +49,23 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               slides: slides,
               jumpToNextPage: jumpToNextPage,
             )
-          : Container(
-              height: 45,
-              width: MediaQuery.of(context).size.width,
-              alignment: Alignment.center,
-              color: Theme.of(context).primaryColor,
-              child: const Text(
-                'GET STARTED NOW',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12
+          : GestureDetector(
+              child: Container(
+                height: 45,
+                width: MediaQuery.of(context).size.width,
+                alignment: Alignment.center,
+                color: Theme.of(context).primaryColor,
+                child: const Text(
+                  'GET STARTED NOW',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12),
                 ),
               ),
+              onTap: () {
+                Navigator.pushNamed(context, WelcomeScreen.routeName);
+              },
             ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learning_english_flutter_app/models/slide_model.dart';
-import 'package:learning_english_flutter_app/screens/on_boarding_screen/welcome_screen.dart';
+import 'package:learning_english_flutter_app/screens/welcome_screen.dart';
 import 'package:learning_english_flutter_app/widgets/on_boarding_widget/bottom_sheet_item.dart';
 import 'package:learning_english_flutter_app/widgets/on_boarding_widget/slide_tile.dart';
 

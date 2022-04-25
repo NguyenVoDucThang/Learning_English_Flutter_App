@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning_english_flutter_app/screens/login_screen/login_screen.dart';
-import 'package:learning_english_flutter_app/screens/login_screen/sign_up_screen.dart';
+import 'package:learning_english_flutter_app/screens/login_screen.dart';
+import 'package:learning_english_flutter_app/screens/sign_up_screen.dart';
 
 class AlreadyHaveAnAccount extends StatelessWidget {
   final bool login;

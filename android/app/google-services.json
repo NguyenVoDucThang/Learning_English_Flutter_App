@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "56098024088",
+    "project_id": "lett-2ad7e",
+    "storage_bucket": "lett-2ad7e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56098024088:android:fc1fe151d5bc03e5c63eed",
+        "android_client_info": {
+          "package_name": "com.example.learning_english_flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56098024088-t1a0391hvmg76qvv0jpkkb3pldst1581.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.learning_english_flutter_app",
+            "certificate_hash": "b3a91cc10332c22356b6e129855a6cdb2c052580"
+          }
+        },
+        {
+          "client_id": "56098024088-rrj8hgiiui89q4v7sul7fgk35ncbo2ep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpacp8ljo2BSHO5Y1gOqmr4RRblhBXUwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56098024088-rrj8hgiiui89q4v7sul7fgk35ncbo2ep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

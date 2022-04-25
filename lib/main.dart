@@ -1,11 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:learning_english_flutter_app/screens/login_screen/login_screen.dart';
-import 'package:learning_english_flutter_app/screens/login_screen/sign_up_screen.dart';
-import 'package:learning_english_flutter_app/screens/on_boarding_screen/welcome_screen.dart';
+import 'package:learning_english_flutter_app/screens/dictionary_screen.dart';
+import 'package:learning_english_flutter_app/screens/login_screen.dart';
+import 'package:learning_english_flutter_app/screens/sign_up_screen.dart';
+import 'package:learning_english_flutter_app/screens/welcome_screen.dart';
 
-import 'screens/on_boarding_screen/on_boarding_screen.dart';
+import 'screens/on_boarding_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -30,6 +35,7 @@ class MyApp extends StatelessWidget {
         WelcomeScreen.routeName: (context) => const WelcomeScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
         SignUpScreen.routeName: (context) => const SignUpScreen(),
+        DictionaryScreen.routeName: (context) => const DictionaryScreen(),
       },
       home: const MyHomePage(),
     );

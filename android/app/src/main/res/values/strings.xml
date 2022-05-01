@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lett</string>
+    <string name="facebook_app_id">1163267517770393</string>
+    <string name="fb_login_protocol_scheme">fb1163267517770393</string>
+    <string name="facebook_client_token">afe915bffcfd9b2adc81ade54208b94e</string>
+</resources>

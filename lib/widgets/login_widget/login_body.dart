@@ -2,11 +2,14 @@ import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:learning_english_flutter_app/helpers/auth_services.dart';
 import 'package:learning_english_flutter_app/screens/dictionary_screen.dart';
+import 'package:learning_english_flutter_app/screens/welcome_screen.dart';
 import 'package:learning_english_flutter_app/widgets/login_widget/rounded_input_field.dart';
 import 'package:learning_english_flutter_app/widgets/login_widget/rounded_password_field.dart';
 import 'package:learning_english_flutter_app/widgets/on_boarding_widget/rounded_button.dart';
 import 'package:learning_english_flutter_app/widgets/sign_up_widget/form_error.dart';
+import 'package:provider/src/provider.dart';
 
 import 'already_have_account.dart';
 import 'login_back_ground.dart';
@@ -30,9 +33,7 @@ class _LoginBodyState extends State<LoginBody> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
 
     return LoginBackGround(
       widget: SingleChildScrollView(
@@ -120,11 +121,13 @@ class _LoginBodyState extends State<LoginBody> {
               RoundedButton(
                 textColor: Colors.white,
                 text: 'LOGIN',
-                backgroundColor: Theme
-                    .of(context)
-                    .primaryColor,
+                backgroundColor: Theme.of(context).primaryColor,
                 onPressed: () {
-                  logIn(emailController.text, passwordController.text);
+                  logIn(
+                    emailController.text,
+                    passwordController.text,
+                    context,
+                  );
                 },
               ),
               const SizedBox(height: 10),
@@ -136,24 +139,14 @@ class _LoginBodyState extends State<LoginBody> {
     );
   }
 
-  void logIn(String email, String password) async {
-      if (_formKey.currentState!.validate()) {
-        if (errors.isEmpty) {
-          await _auth
-              .signInWithEmailAndPassword(email: email, password: password)
-              .then((uid) =>
-          {
-            Navigator.of(context).pushNamed(DictionaryScreen.routeName),
-          })
-              .catchError((e) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Email or password is incorrect'),
-              ),
-            );
-          });
-        }
+  void logIn(String email, String password, BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      if (errors.isEmpty) {
+        _formKey.currentState!.save();
+        context
+            .read<AuthService>()
+            .signInWithEmailAndPassword(email, password, context);
       }
-
+    }
   }
 }

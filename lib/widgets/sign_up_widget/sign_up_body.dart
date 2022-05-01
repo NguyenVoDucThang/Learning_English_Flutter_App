@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:learning_english_flutter_app/helpers/auth_services.dart';
+import 'package:learning_english_flutter_app/helpers/facebook_auth_controller.dart';
+import 'package:learning_english_flutter_app/helpers/google_auth_controller.dart';
 import 'package:learning_english_flutter_app/models/user_model.dart';
 import 'package:learning_english_flutter_app/screens/dictionary_screen.dart';
 import 'package:learning_english_flutter_app/widgets/login_widget/already_have_account.dart';
@@ -9,6 +12,7 @@ import 'package:learning_english_flutter_app/widgets/login_widget/rounded_passwo
 import 'package:learning_english_flutter_app/widgets/on_boarding_widget/rounded_button.dart';
 import 'package:learning_english_flutter_app/widgets/sign_up_widget/sign_up_back_ground.dart';
 import 'package:learning_english_flutter_app/widgets/sign_up_widget/social_icon.dart';
+import 'package:provider/src/provider.dart';
 
 import 'form_error.dart';
 import 'or_divider.dart';
@@ -190,7 +194,11 @@ class _SignUpBodyState extends State<SignUpBody> {
                 text: 'SIGN UP',
                 backgroundColor: const Color(0xFF6F35A5),
                 onPressed: () {
-                  signUp(emailController.text, passwordController.text);
+                  signUp(
+                    emailController.text,
+                    passwordController.text,
+                    context,
+                  );
                 },
                 textColor: Colors.white,
               ),
@@ -203,13 +211,17 @@ class _SignUpBodyState extends State<SignUpBody> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SocialIcon(
-                    onPress: () {},
+                    onPress: () async {
+                      loginWithFacebook(context);
+                    },
                     imagePath: 'assets/images/facebook.png',
                   ),
                   SocialIcon(
-                    onPress: () {},
+                    onPress: () async {
+                      loginWithGoogle(context);
+                    },
                     imagePath: 'assets/images/google.png',
-                  )
+                  ),
                 ],
               )
             ],
@@ -219,15 +231,18 @@ class _SignUpBodyState extends State<SignUpBody> {
     );
   }
 
-  void signUp(String email, String password) async {
+  void signUp(
+    String email,
+    String password,
+    BuildContext context,
+  ) async {
     if (_formKey.currentState!.validate()) {
       if (errors.isEmpty) {
-        await _auth
-            .createUserWithEmailAndPassword(
-          email: email,
-          password: password,
-        )
-            .then((value) {
+        _formKey.currentState!.save();
+        context
+            .read<AuthService>()
+            .signUpWithEmailAndPassword(email, password, context)
+            .then((value) async {
           postDetailToFireStore();
         }).catchError((e) {
           ScaffoldMessenger.of(context)

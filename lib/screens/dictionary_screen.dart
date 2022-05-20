@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:learning_english_flutter_app/widgets/dictionary_widget/dictionary_body.dart';
 import 'package:learning_english_flutter_app/widgets/dictionary_widget/meaning_word.dart';
 import 'package:learning_english_flutter_app/widgets/dictionary_widget/search_word__tff.dart';
-import 'package:flutter/services.dart';
-
 
 class DictionaryScreen extends StatefulWidget {
   static const String routeName = '/dictionary_screen';

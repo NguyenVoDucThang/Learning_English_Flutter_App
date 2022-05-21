@@ -1,5 +1,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:learning_english_flutter_app/widgets/dictionary_widget/search_background.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
@@ -23,6 +25,8 @@ class _SearchWordTffState extends State<SearchWordTff> {
   late stt.SpeechToText _speech;
   bool _isListening = false;
   double _confidence = 1.0;
+  XFile? imageFile;
+  bool textScanning = false;
 
   @override
   void initState() {
@@ -34,13 +38,32 @@ class _SearchWordTffState extends State<SearchWordTff> {
   @override
   Widget build(BuildContext context) {
     return SearchBackground(
-      listButton: CustomSquareButton(
-        icon: Icons.mic_rounded,
-        title: "microphone",
-        func: () {
-          createAlertDialog(context);
-          _listen();
-        },
+      listButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          CustomSquareButton(
+            icon: Icons.mic_rounded,
+            title: "microphone",
+            func: () {
+              createAlertDialog(context);
+              _listen();
+            },
+          ),
+          CustomSquareButton(
+            icon: Icons.camera_alt_outlined,
+            title: "camera",
+            func: () {
+              getImage(ImageSource.camera);
+            },
+          ),
+          CustomSquareButton(
+            icon: Icons.aspect_ratio_outlined,
+            title: "scan",
+            func: () {
+              getImage(ImageSource.gallery);
+            },
+          ),
+        ],
       ),
       searchWidget: Card(
         shape: RoundedRectangleBorder(
@@ -86,24 +109,32 @@ class _SearchWordTffState extends State<SearchWordTff> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          content: Container(
-            height: 50,
-            width: 50,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(224, 62, 62, 1),
-              shape: BoxShape.circle,
-            ),
-            child: Center(
-              child: IconButton(
-                icon: const Icon(
-                  Icons.mic_none_outlined,
-                  color: Colors.white,
+          content: AvatarGlow(
+            animate: _isListening,
+            glowColor: Theme.of(context).primaryColor,
+            endRadius: 75.0,
+            duration: const Duration(milliseconds: 2000),
+            repeatPauseDuration: const Duration(milliseconds: 100),
+            repeat: true,
+            child: Container(
+              height: 50,
+              width: 50,
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(224, 62, 62, 1),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.mic_none_outlined,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    setState(() => _isListening = false);
+                    _speech.stop();
+                  },
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  setState(() => _isListening = false);
-                  _speech.stop();
-                },
               ),
             ),
           ),
@@ -130,5 +161,37 @@ class _SearchWordTffState extends State<SearchWordTff> {
         );
       }
     }
+  }
+
+  void getImage(ImageSource source) async {
+    try {
+      final pickedImage = await ImagePicker().pickImage(source: source);
+      if (pickedImage != null) {
+        textScanning = true;
+        imageFile = pickedImage;
+        setState(() {});
+        getRecognisedText(pickedImage);
+      }
+    } catch (e) {
+      textScanning = false;
+      imageFile = null;
+      setState(() {});
+    }
+  }
+
+  void getRecognisedText(XFile image) async {
+    final inputImage = InputImage.fromFilePath(image.path);
+    final textDetector = GoogleMlKit.vision.textDetector();
+    RecognisedText recognisedText = await textDetector.processImage(inputImage);
+    await textDetector.close();
+    widget.inputController.text = "";
+    for (TextBlock block in recognisedText.blocks) {
+      for (TextLine line in block.lines) {
+        widget.inputController.text = widget.inputController.text + line.text + "\n";
+      }
+    }
+    print('${widget.inputController.text}');
+    textScanning = false;
+    setState(() {});
   }
 }

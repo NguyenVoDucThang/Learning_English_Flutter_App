@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:learning_english_flutter_app/widgets/dictionary_widget/dictionary_body.dart';
 import 'package:learning_english_flutter_app/widgets/dictionary_widget/meaning_word.dart';
 import 'package:learning_english_flutter_app/widgets/dictionary_widget/search_word__tff.dart';
+import 'package:learning_english_flutter_app/widgets/dictionary_widget/word_of_day.dart';
 
 class DictionaryScreen extends StatefulWidget {
   static const String routeName = '/dictionary_screen';
@@ -36,8 +37,10 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
                 height: 10,
               ),
               inputController.text.isEmpty
-                  ? const DictionaryBody()
-                  : MeaningWord(inputController: inputController),
+                  ? const WorldOfDay()
+                  : Expanded(
+                      // height: MediaQuery.of(context).size.height * 0.50,
+                      child: DictionaryBody(inputController: inputController)),
             ],
           ),
         ),

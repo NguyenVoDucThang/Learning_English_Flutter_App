@@ -33,14 +33,9 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
                   setState(() {});
                 },
               ),
-              const SizedBox(
-                height: 10,
-              ),
               inputController.text.isEmpty
                   ? const WorldOfDay()
-                  : Expanded(
-                      // height: MediaQuery.of(context).size.height * 0.50,
-                      child: DictionaryBody(inputController: inputController)),
+                  : DictionaryBody(inputController: inputController),
             ],
           ),
         ),

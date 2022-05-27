@@ -50,20 +50,28 @@ class Meaning {
   Meaning({
     this.partOfSpeech,
     this.definitions,
+    this.synonyms,
+    this.antonyms,
   });
 
   String? partOfSpeech;
   List<Definition>? definitions;
+  List<dynamic>? synonyms;
+  List<dynamic>? antonyms;
 
   factory Meaning.fromJson(Map<String, dynamic> json) => Meaning(
     partOfSpeech: json["partOfSpeech"],
     definitions: List<Definition>.from(
         json["definitions"].map((x) => Definition.fromJson(x))),
+    synonyms: List<dynamic>.from(json["synonyms"].map((x) => x)),
+    antonyms: List<dynamic>.from(json["antonyms"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
     "partOfSpeech": partOfSpeech,
     "definitions": List<dynamic>.from(definitions!.map((x) => x.toJson())),
+    "synonyms": List<dynamic>.from(synonyms!.map((x) => x)),
+    "antonyms": List<dynamic>.from(antonyms!.map((x) => x)),
   };
 }
 

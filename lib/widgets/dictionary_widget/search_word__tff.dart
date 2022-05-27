@@ -39,7 +39,7 @@ class _SearchWordTffState extends State<SearchWordTff> {
   Widget build(BuildContext context) {
     return SearchBackground(
       listButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+
         children: [
           CustomSquareButton(
             icon: Icons.mic_rounded,
@@ -49,6 +49,7 @@ class _SearchWordTffState extends State<SearchWordTff> {
               _listen();
             },
           ),
+          const SizedBox(width: 15),
           CustomSquareButton(
             icon: Icons.camera_alt_outlined,
             title: "camera",
@@ -56,6 +57,7 @@ class _SearchWordTffState extends State<SearchWordTff> {
               getImage(ImageSource.camera);
             },
           ),
+          const SizedBox(width: 15),
           CustomSquareButton(
             icon: Icons.aspect_ratio_outlined,
             title: "scan",

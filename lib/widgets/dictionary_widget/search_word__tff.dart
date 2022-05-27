@@ -189,7 +189,8 @@ class _SearchWordTffState extends State<SearchWordTff> {
     widget.inputController.text = "";
     for (TextBlock block in recognisedText.blocks) {
       for (TextLine line in block.lines) {
-        widget.inputController.text = widget.inputController.text + line.text + "\n";
+        widget.inputController.text = (widget.inputController.text + line.text).trim().toLowerCase();
+        break;
       }
     }
     print('${widget.inputController.text}');

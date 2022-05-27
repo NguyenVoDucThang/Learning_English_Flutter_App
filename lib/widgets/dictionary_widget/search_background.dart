@@ -47,7 +47,7 @@ class SearchBackground extends StatelessWidget {
             child: listButton,
           ),
           Positioned(
-            bottom: -1,
+            bottom: -2,
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: 40,

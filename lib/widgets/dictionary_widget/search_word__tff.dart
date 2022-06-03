@@ -183,8 +183,8 @@ class _SearchWordTffState extends State<SearchWordTff> {
 
   void getRecognisedText(XFile image) async {
     final inputImage = InputImage.fromFilePath(image.path);
-    final textDetector = GoogleMlKit.vision.textDetector();
-    RecognisedText recognisedText = await textDetector.processImage(inputImage);
+    final textDetector = GoogleMlKit.vision.textRecognizer();
+    RecognizedText recognisedText = await textDetector.processImage(inputImage);
     await textDetector.close();
     widget.inputController.text = "";
     for (TextBlock block in recognisedText.blocks) {

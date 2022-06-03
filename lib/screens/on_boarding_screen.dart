@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:learning_english_flutter_app/models/slide_model.dart';
 import 'package:learning_english_flutter_app/screens/welcome_screen.dart';
 import 'package:learning_english_flutter_app/widgets/on_boarding_widget/bottom_sheet_item.dart';
+import 'package:learning_english_flutter_app/widgets/on_boarding_widget/rounded_button.dart';
 import 'package:learning_english_flutter_app/widgets/on_boarding_widget/slide_tile.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -26,6 +27,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: PageView.builder(
         controller: pageController,
         itemCount: slides.length,
@@ -35,37 +37,45 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           });
         },
         itemBuilder: (context, index) {
-          return SlideTile(
-            title: slides[index].title,
-            description: slides[index].description,
-            imageAssetPath: slides[index].imageAssetPath,
-          );
+          if (index != 2) {
+            return SlideTile(
+              title: slides[index].title,
+              description: slides[index].description,
+              imageAssetPath: slides[index].imageAssetPath,
+            );
+          } else {
+            return Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.25,
+                ),
+                SlideTile(
+                  title: slides[index].title,
+                  description: slides[index].description,
+                  imageAssetPath: slides[index].imageAssetPath,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.06,
+                ),
+                RoundedButton(
+                  text: 'Get Started Now',
+                  backgroundColor: Theme.of(context).primaryColor,
+                  textColor: Colors.white,
+                  onPressed: () {
+                    Navigator.pushNamed(context, WelcomeScreen.routeName);
+                  },
+                )
+              ],
+            );
+          }
         },
       ),
-      bottomSheet: currentIndex != (slides.length - 1)
-          ? BottomSheetItem(
+      bottomSheet: BottomSheetItem(
               jumpToLastPage: jumpToLastPage,
               currentIndex: currentIndex,
               slides: slides,
               jumpToNextPage: jumpToNextPage,
-            )
-          : GestureDetector(
-              child: Container(
-                height: 45,
-                width: MediaQuery.of(context).size.width,
-                alignment: Alignment.center,
-                color: Theme.of(context).primaryColor,
-                child: const Text(
-                  'GET STARTED NOW',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12),
-                ),
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, WelcomeScreen.routeName);
-              },
+              jumpToPreviousPage: jumpPreviousPage,
             ),
     );
   }
@@ -73,6 +83,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   void jumpToLastPage() {
     pageController.animateToPage(
       slides.length - 1,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.linear,
+    );
+  }
+
+  void jumpPreviousPage() {
+    pageController.animateToPage(
+      currentIndex == 0 ? currentIndex : currentIndex - 1,
       duration: const Duration(milliseconds: 400),
       curve: Curves.linear,
     );

@@ -37,19 +37,19 @@ class SlideModel {
 List<SlideModel> getSlides() {
   List<SlideModel> slides = [
     SlideModel(
-        title: 'World',
+        title: 'Connect To The World',
         description:
-            'Do you know that English is the most popular language in the world?',
-        imageAssetPath: 'assets/images/world.png'),
+            'Do you know that English is the \nmost popular language in the world?',
+        imageAssetPath: 'assets/images/first_boarding.png'),
     SlideModel(
-        title: 'Learn',
+        title: 'Archive Your Goal',
         description:
-            'Our application will help you learn English in an uncomplicated way',
-        imageAssetPath: 'assets/images/learning.png'),
+            'Our application will help you learn \nEnglish in an uncomplicated way.',
+        imageAssetPath: 'assets/images/second_boarding.png'),
     SlideModel(
-        title: 'Start',
+        title: 'Interactive Learning',
         description: 'Even the greatest was once a beginner.\n Don\'t be afraid to take that first step.',
-        imageAssetPath: 'assets/images/start.png'),
+        imageAssetPath: 'assets/images/third_boarding.png'),
   ];
 
   return slides;

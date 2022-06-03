@@ -34,9 +34,9 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  cloud_firestore: 2.5.1
-  firebase_auth: 3.1.0
-  firebase_core: 1.6.0
+  cloud_firestore: ^3.1.17
+  firebase_auth: ^3.3.19
+  firebase_core: ^1.17.1
   flutter_svg: ^0.23.0+1
   google_sign_in: ^5.3.0
   provider: ^6.0.2
@@ -45,8 +45,8 @@ dependencies:
   audioplayers: ^0.20.1
   english_words: ^4.0.0
   avatar_glow: ^2.0.2
-  speech_to_text: 5.0.0
-  google_ml_kit: 0.7.2
+  speech_to_text: ^5.5.0
+  google_ml_kit: ^0.11.0
   image_picker: ^0.8.5+3
 
 
@@ -106,6 +106,9 @@ flutter:
    - family: FredokaOne
      fonts:
        - asset: assets/fonts/FredokaOne/FredokaOne-Regular.ttf
+   - family: Cream
+     fonts:
+       - asset: assets/fonts/Script/script_font.otf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

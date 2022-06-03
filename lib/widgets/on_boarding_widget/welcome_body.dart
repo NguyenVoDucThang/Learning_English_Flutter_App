@@ -3,7 +3,7 @@ import 'package:learning_english_flutter_app/screens/login_screen.dart';
 import 'package:learning_english_flutter_app/screens/sign_up_screen.dart';
 import 'package:learning_english_flutter_app/widgets/on_boarding_widget/rounded_button.dart';
 
-import 'back_ground.dart';
+import 'background.dart';
 
 class WelcomeBody extends StatelessWidget {
   const WelcomeBody({Key? key}) : super(key: key);

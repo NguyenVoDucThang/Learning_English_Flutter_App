@@ -24,16 +24,19 @@ class SlideTile extends StatelessWidget {
           Text(
             title,
             style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w600 ,
+              color: Color.fromRGBO(10, 58, 10, 1),
+              fontFamily: 'Cream',
+              fontSize: 50,
             ),
           ),
           const SizedBox(height: 17),
           Text(description,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 14,
+                fontWeight: FontWeight.w300,
+                fontFamily: 'OpenSans',
+                fontSize: 19,
+                height: 1.5,
               )),
         ],
       ),

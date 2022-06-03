@@ -14,6 +14,7 @@ import 'package:learning_english_flutter_app/widgets/sign_up_widget/sign_up_back
 import 'package:learning_english_flutter_app/widgets/sign_up_widget/social_icon.dart';
 import 'package:provider/src/provider.dart';
 
+import '../../screens/login_screen.dart';
 import 'form_error.dart';
 import 'or_divider.dart';
 
@@ -53,6 +54,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                 'assets/images/signup.png',
                 height: size.height * 0.25,
               ),
+              const SizedBox(height: 8),
               RoundedInputField(
                 textCapitalization: TextCapitalization.none,
                 onChanged: (value) {
@@ -90,6 +92,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                 hintText: 'Your email',
                 icon: Icons.person,
               ),
+              const SizedBox(height: 8),
               RoundedInputField(
                 textCapitalization: TextCapitalization.words,
                 onChanged: (value) {
@@ -127,6 +130,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                 hintText: 'Your Name',
                 icon: Icons.drive_file_rename_outline,
               ),
+              const SizedBox(height: 8),
               RoundedPasswordField(
                 hintText: 'Password',
                 onChanged: (value) {
@@ -162,6 +166,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                   return null;
                 },
               ),
+              const SizedBox(height: 8),
               RoundedPasswordField(
                 hintText: 'Confirm Password',
                 onChanged: (value) {
@@ -188,7 +193,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                   return null;
                 },
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 8),
               FormError(errors: errors),
               RoundedButton(
                 text: 'SIGN UP',
@@ -244,6 +249,9 @@ class _SignUpBodyState extends State<SignUpBody> {
             .signUpWithEmailAndPassword(email, password, context)
             .then((value) async {
           postDetailToFireStore();
+          ScaffoldMessenger.of(context)
+              .showSnackBar(const SnackBar(content: Text("Sign up successful")));
+          Navigator.pushNamed(context, LoginScreen.routeName);
         }).catchError((e) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(e.toString())));

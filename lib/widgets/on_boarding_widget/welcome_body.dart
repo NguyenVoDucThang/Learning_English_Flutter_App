@@ -15,18 +15,22 @@ class WelcomeBody extends StatelessWidget {
     return Background(
       child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: size.height * 0.04),
             const Text(
-              "WELCOME TO LET",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              "Hi There!",
+              style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontFamily: "Cream",
+                fontSize: 60,
+              ),
             ),
-            SizedBox(height: size.height * 0.05),
+            SizedBox(height: size.height * 0.08),
             Image.asset(
               "assets/images/chat.png",
               height: size.height * 0.45,
             ),
-            SizedBox(height: size.height * 0.05),
+            SizedBox(height: size.height * 0.08),
             RoundedButton(
               onPressed: () {
                 Navigator.of(context).pushNamed(LoginScreen.routeName);
@@ -35,7 +39,7 @@ class WelcomeBody extends StatelessWidget {
               text: 'LOGIN',
               textColor: Colors.white,
             ),
-            SizedBox(height: size.height * 0.01),
+            SizedBox(height: size.height * 0.02),
             RoundedButton(
               onPressed: () {
                 Navigator.of(context).pushNamed(SignUpScreen.routeName);

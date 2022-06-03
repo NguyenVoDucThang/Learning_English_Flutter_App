@@ -46,6 +46,7 @@ class _LoginBodyState extends State<LoginBody> {
                 'assets/images/login.png',
                 height: size.height * 0.3,
               ),
+              const SizedBox(height: 18),
               RoundedInputField(
                 textCapitalization: TextCapitalization.none,
                 icon: Icons.person,
@@ -83,6 +84,7 @@ class _LoginBodyState extends State<LoginBody> {
                   return null;
                 },
               ),
+              const SizedBox(height: 10),
               RoundedPasswordField(
                 hintText: 'Password',
                 onChanged: (value) {
@@ -116,7 +118,7 @@ class _LoginBodyState extends State<LoginBody> {
                   }
                 },
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 10),
               FormError(errors: errors),
               RoundedButton(
                 textColor: Colors.white,

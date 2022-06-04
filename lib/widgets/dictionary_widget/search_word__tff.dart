@@ -1,9 +1,14 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:learning_english_flutter_app/widgets/dictionary_widget/search_background.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:image_cropper/image_cropper.dart';
 
 import 'custom_square_button.dart';
 
@@ -39,7 +44,6 @@ class _SearchWordTffState extends State<SearchWordTff> {
   Widget build(BuildContext context) {
     return SearchBackground(
       listButton: Row(
-
         children: [
           CustomSquareButton(
             icon: Icons.mic_rounded,
@@ -60,7 +64,7 @@ class _SearchWordTffState extends State<SearchWordTff> {
           const SizedBox(width: 15),
           CustomSquareButton(
             icon: Icons.aspect_ratio_outlined,
-            title: "scan",
+            title: "gallery",
             func: () {
               getImage(ImageSource.gallery);
             },
@@ -166,13 +170,36 @@ class _SearchWordTffState extends State<SearchWordTff> {
   }
 
   void getImage(ImageSource source) async {
+    print("FILE LINK: " + source.toString());
     try {
       final pickedImage = await ImagePicker().pickImage(source: source);
-      if (pickedImage != null) {
+      final croppedFile = await ImageCropper.platform.cropImage(
+        sourcePath: pickedImage!.path,
+        aspectRatioPresets: [
+          CropAspectRatioPreset.square,
+          CropAspectRatioPreset.ratio3x2,
+          CropAspectRatioPreset.original,
+          CropAspectRatioPreset.ratio4x3,
+          CropAspectRatioPreset.ratio16x9
+        ],
+        uiSettings: [
+          AndroidUiSettings(
+              toolbarTitle: 'Cropper',
+              toolbarColor: Colors.deepPurple,
+              toolbarWidgetColor: Colors.white,
+              initAspectRatio: CropAspectRatioPreset.original,
+              lockAspectRatio: false),
+          IOSUiSettings(
+            title: 'Crop Image',
+          ),
+        ],
+      );
+      XFile image = XFile(croppedFile!.path);
+      if (image != null) {
         textScanning = true;
-        imageFile = pickedImage;
+        imageFile = image;
         setState(() {});
-        getRecognisedText(pickedImage);
+        getRecognisedText(image);
       }
     } catch (e) {
       textScanning = false;
@@ -189,7 +216,8 @@ class _SearchWordTffState extends State<SearchWordTff> {
     widget.inputController.text = "";
     for (TextBlock block in recognisedText.blocks) {
       for (TextLine line in block.lines) {
-        widget.inputController.text = (widget.inputController.text + line.text).trim().toLowerCase();
+        widget.inputController.text =
+            (widget.inputController.text + line.text).trim().toLowerCase();
         break;
       }
     }

@@ -33,13 +33,13 @@ class CustomSquareButton extends StatelessWidget {
                 Icon(
                   icon,
                   size: 40,
-                  color: const Color.fromRGBO(210, 208, 208, 1),
+                  color: Colors.white,
                 ),
                 Text(
                   title,
                   style: const TextStyle(
                     fontFamily: "Roboto",
-                    color: Color.fromRGBO(210, 208, 208, 1),
+                    color: Colors.white,
                     fontSize: 11,
                   )
                 ),

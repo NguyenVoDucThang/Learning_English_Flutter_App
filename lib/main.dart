@@ -5,6 +5,7 @@ import 'package:learning_english_flutter_app/screens/dictionary_screen.dart';
 import 'package:learning_english_flutter_app/screens/home_screen.dart';
 import 'package:learning_english_flutter_app/screens/login_screen.dart';
 import 'package:learning_english_flutter_app/screens/sign_up_screen.dart';
+import 'package:learning_english_flutter_app/screens/translate_screen.dart';
 import 'package:learning_english_flutter_app/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           fontFamily: 'OpenSans',
-          primaryColor:  const Color.fromRGBO(104, 105, 173, 1),
+          primaryColor: const Color.fromRGBO(104, 105, 173, 1),
           textTheme: const TextTheme(
             headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
             headline2: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
@@ -81,5 +82,6 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const OnBoardingScreen();
+    //return const TranslateScreen();
   }
 }

@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:learning_english_flutter_app/screens/dictionary_screen.dart';
 
+import '../screens/home_screen.dart';
+
 class AuthService {
   FirebaseAuth _auth;
 
@@ -24,7 +26,7 @@ class AuthService {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((uid) => {
-                Navigator.of(context).pushNamed(DictionaryScreen.routeName),
+                Navigator.of(context).pushNamed(HomeScreen.routeName),
               })
           .catchError((e) {
         ScaffoldMessenger.of(context).showSnackBar(

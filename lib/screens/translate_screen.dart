@@ -75,16 +75,14 @@ class _TranslateScreenState extends State<TranslateScreen> {
   Widget build(BuildContext context) {
     //english = widget.searchWords;
     if (isGottenValueFromMainScreen == false) {
-      final translateString =
-          ModalRoute.of(context)!.settings.arguments as String;
-      print("DEBUG1: " + source);
       if (source == '') {
-        print("DEBUG: " + translateString);
+        final translateString =
+            ModalRoute.of(context)!.settings.arguments as String;
         source = translateString;
         sourceController.value = TextEditingValue(
           text: source,
           selection: TextSelection.fromPosition(
-            TextPosition(offset: source.length),
+            TextPosition(offset: source == null ? 0 : source.length),
           ),
         );
       }

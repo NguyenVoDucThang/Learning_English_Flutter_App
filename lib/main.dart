@@ -83,6 +83,6 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const OnBoardingScreen();
-    //return const TranslateScreen();
+    return const TranslateScreen();
   }
 }

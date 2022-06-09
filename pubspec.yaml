@@ -53,7 +53,7 @@ dependencies:
   translator: ^0.1.7
   flutter_language_identification: ^0.1.0
   flutter_tts: ^3.4.0
-
+  get: ^4.6.1
 
 dev_dependencies:
   flutter_test:

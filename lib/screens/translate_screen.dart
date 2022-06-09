@@ -66,7 +66,6 @@ class _TranslateScreenState extends State<TranslateScreen> {
         ),
       );
     });
-
     print("LANGUAGE: ${result.sourceLanguage}");
   }
 
@@ -114,6 +113,21 @@ class _TranslateScreenState extends State<TranslateScreen> {
                 size: 34,
               ),
               onPressed: () => ZoomDrawer.of(context)!.toggle(),
+            ),
+          ),
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.06 - 5,
+            right: 10,
+            child: IconButton(
+              icon: const Icon(
+                Icons.restart_alt,
+                color: Colors.white,
+                size: 34,
+              ),
+              onPressed: () {
+                sourceController.text = '';
+                vietnameseController.text = '';
+              },
             ),
           ),
           Positioned(

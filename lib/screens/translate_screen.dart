@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_language_identification/flutter_language_identification.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:learning_english_flutter_app/widgets/on_boarding_widget/rounded_button.dart';
 import 'package:translator/translator.dart';
 
 class TranslateScreen extends StatefulWidget {
@@ -24,6 +28,9 @@ class _TranslateScreenState extends State<TranslateScreen> {
   String vietnamese = '';
   bool isGottenValueFromMainScreen = false;
   String sourceLanguage = 'English';
+
+  XFile? imageFile;
+  bool textScanning = false;
 
   @override
   void initState() {
@@ -69,13 +76,17 @@ class _TranslateScreenState extends State<TranslateScreen> {
     if (isGottenValueFromMainScreen == false) {
       final translateString =
           ModalRoute.of(context)!.settings.arguments as String;
-      source = translateString;
-      sourceController.value = TextEditingValue(
-        text: source,
-        selection: TextSelection.fromPosition(
-          TextPosition(offset: source.length),
-        ),
-      );
+      print("DEBUG: " + source);
+      if (source != '') {
+        source = translateString;
+        sourceController.value = TextEditingValue(
+          text: source,
+          selection: TextSelection.fromPosition(
+            TextPosition(offset: source.length),
+          ),
+        );
+      }
+
       isGottenValueFromMainScreen = true;
     }
 
@@ -125,7 +136,7 @@ class _TranslateScreenState extends State<TranslateScreen> {
                 controller: sourceController,
                 style: const TextStyle(color: Colors.white, fontSize: 22),
                 keyboardType: TextInputType.multiline,
-                maxLines: 8,
+                maxLines: 7,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -150,7 +161,7 @@ class _TranslateScreenState extends State<TranslateScreen> {
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.58,
+            top: MediaQuery.of(context).size.height * 0.5,
             child: Container(
               width: MediaQuery.of(context).size.width - 40,
               height: MediaQuery.of(context).size.height * 0.5,
@@ -158,7 +169,7 @@ class _TranslateScreenState extends State<TranslateScreen> {
                 controller: vietnameseController,
                 style: const TextStyle(color: Colors.white, fontSize: 22),
                 keyboardType: TextInputType.multiline,
-                maxLines: 8,
+                maxLines: 7,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -182,8 +193,78 @@ class _TranslateScreenState extends State<TranslateScreen> {
               ),
             ),
           ),
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.85,
+            child: RoundedButton(
+              backgroundColor: Colors.white,
+              text: 'Scan Text',
+              textColor: Colors.indigo,
+              onPressed: () {
+                getImage(ImageSource.camera);
+              },
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  void getImage(ImageSource source) async {
+    print("FILE LINK: " + source.toString());
+    try {
+      final pickedImage = await ImagePicker().pickImage(source: source);
+      final croppedFile = await ImageCropper.platform.cropImage(
+        sourcePath: pickedImage!.path,
+        aspectRatioPresets: [
+          CropAspectRatioPreset.square,
+          CropAspectRatioPreset.ratio3x2,
+          CropAspectRatioPreset.original,
+          CropAspectRatioPreset.ratio4x3,
+          CropAspectRatioPreset.ratio16x9
+        ],
+        uiSettings: [
+          AndroidUiSettings(
+              toolbarTitle: 'Cropper',
+              toolbarColor: Colors.deepPurple,
+              toolbarWidgetColor: Colors.white,
+              initAspectRatio: CropAspectRatioPreset.original,
+              lockAspectRatio: false),
+          IOSUiSettings(
+            title: 'Crop Image',
+          ),
+        ],
+      );
+      XFile image = XFile(croppedFile!.path);
+      if (image != null) {
+        textScanning = true;
+        imageFile = image;
+        setState(() {});
+        getRecognisedText(image);
+      }
+    } catch (e) {
+      textScanning = false;
+      imageFile = null;
+      setState(() {});
+    }
+  }
+
+  void getRecognisedText(XFile image) async {
+    final inputImage = InputImage.fromFilePath(image.path);
+    final textDetector = GoogleMlKit.vision.textRecognizer();
+    RecognizedText recognisedText = await textDetector.processImage(inputImage);
+    await textDetector.close();
+    sourceController.text = "";
+    String searchText = "";
+
+    for (TextBlock block in recognisedText.blocks) {
+      for (TextLine line in block.lines) {
+        sourceController.text =
+            (sourceController.text + line.text).trim().toLowerCase();
+        break;
+      }
+    }
+    print('${sourceController.text}');
+    textScanning = false;
+    setState(() {});
   }
 }

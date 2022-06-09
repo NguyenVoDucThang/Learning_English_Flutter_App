@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_language_identification/flutter_language_identification.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -28,6 +29,7 @@ class _TranslateScreenState extends State<TranslateScreen> {
   String vietnamese = '';
   bool isGottenValueFromMainScreen = false;
   String sourceLanguage = 'English';
+  FlutterTts flutterTts = FlutterTts();
 
   XFile? imageFile;
   bool textScanning = false;
@@ -144,68 +146,108 @@ class _TranslateScreenState extends State<TranslateScreen> {
           ),
           Positioned(
             top: MediaQuery.of(context).size.height * 0.16,
-            child: Container(
-              width: MediaQuery.of(context).size.width - 40,
-              height: MediaQuery.of(context).size.height * 0.5,
-              child: TextFormField(
-                controller: sourceController,
-                style: const TextStyle(color: Colors.white, fontSize: 22),
-                keyboardType: TextInputType.multiline,
-                maxLines: 7,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            child: Stack(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width - 40,
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: TextFormField(
+                    controller: sourceController,
+                    style: const TextStyle(color: Colors.white, fontSize: 22),
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 7,
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                      labelStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontFamily: 'FredokaOne',
+                      ),
+                      labelText: sourceLanguage,
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                    ),
                   ),
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white, width: 2.0),
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white, width: 2.0),
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  ),
-                  labelStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontFamily: 'FredokaOne',
-                  ),
-                  labelText: sourceLanguage,
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
                 ),
-              ),
+                Positioned(
+                  top: 5,
+                  right: 5,
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.volume_up_outlined,
+                      color: Colors.white,
+                    ),
+                    onPressed: () async {
+                      if (sourceController.text != '') {
+                        await flutterTts.setLanguage("en-US");
+                        await flutterTts.speak(sourceController.text);
+                      }
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
           Positioned(
             top: MediaQuery.of(context).size.height * 0.5,
-            child: Container(
-              width: MediaQuery.of(context).size.width - 40,
-              height: MediaQuery.of(context).size.height * 0.5,
-              child: TextFormField(
-                controller: vietnameseController,
-                style: const TextStyle(color: Colors.white, fontSize: 22),
-                keyboardType: TextInputType.multiline,
-                maxLines: 7,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            child: Stack(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width - 40,
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: TextFormField(
+                    controller: vietnameseController,
+                    style: const TextStyle(color: Colors.white, fontSize: 22),
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 7,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 2.0),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                      labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontFamily: 'FredokaOne',
+                      ),
+                      labelText: 'Vietnamese',
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                    ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white, width: 2.0),
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white, width: 2.0),
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  ),
-                  labelStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontFamily: 'FredokaOne',
-                  ),
-                  labelText: 'Vietnamese',
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
                 ),
-              ),
+                Positioned(
+                  top: 5,
+                  right: 5,
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.volume_up_outlined,
+                      color: Colors.white,
+                    ),
+                    onPressed: () async {
+                      if (vietnameseController.text != '') {
+                        await flutterTts.setLanguage("vi-VN");
+                        await flutterTts.speak(vietnameseController.text);
+                      }
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
           Positioned(

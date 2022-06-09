@@ -75,8 +75,9 @@ class _TranslateScreenState extends State<TranslateScreen> {
     if (isGottenValueFromMainScreen == false) {
       final translateString =
           ModalRoute.of(context)!.settings.arguments as String;
-      print("DEBUG: " + source);
-      if (source != '') {
+      print("DEBUG1: " + source);
+      if (source == '') {
+        print("DEBUG: " + translateString);
         source = translateString;
         sourceController.value = TextEditingValue(
           text: source,

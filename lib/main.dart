@@ -69,6 +69,7 @@ class MyApp extends StatelessWidget {
           SignUpScreen.routeName: (context) => const SignUpScreen(),
           DictionaryScreen.routeName: (context) => const DictionaryScreen(),
           HomeScreen.routeName: (context) => const HomeScreen(),
+          TranslateScreen.routeName: (context) => TranslateScreen(),
         },
         home: const MyHomePage(),
       ),

@@ -214,6 +214,8 @@ class _SearchWordTffState extends State<SearchWordTff> {
     RecognizedText recognisedText = await textDetector.processImage(inputImage);
     await textDetector.close();
     widget.inputController.text = "";
+    String searchText = "";
+
     for (TextBlock block in recognisedText.blocks) {
       for (TextLine line in block.lines) {
         widget.inputController.text =

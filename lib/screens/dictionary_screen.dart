@@ -15,9 +15,11 @@ class DictionaryScreen extends StatefulWidget {
 
 class _DictionaryScreenState extends State<DictionaryScreen> {
   TextEditingController inputController = TextEditingController();
+  int numOfWords = 0;
 
   @override
   Widget build(BuildContext context) {
+    String searchWords = inputController.text;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -30,10 +32,18 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
               SearchWordTff(
                 inputController: inputController,
                 func: () {
-                  setState(() {});
+                  searchWords = inputController.text;
+                  numOfWords = searchWords.split(' ').length;
+                  if(numOfWords == 1) {
+                    setState(() {});
+                  } else {
+                    Navigator.pushNamed(context, '/translate_screen', arguments: searchWords);
+                    inputController.text = '';
+                  }
+
                 },
               ),
-              inputController.text.isEmpty
+              inputController.text == ''
                   ? const WorldOfDay()
                   : DictionaryBody(inputController: inputController),
             ],

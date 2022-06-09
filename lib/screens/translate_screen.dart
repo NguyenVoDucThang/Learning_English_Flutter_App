@@ -1,34 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_language_identification/flutter_language_identification.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:translator/translator.dart';
 
 class TranslateScreen extends StatefulWidget {
   static const String routeName = '/translate_screen';
 
-  const TranslateScreen({Key? key}) : super(key: key);
+  //String searchWords = '';
+  const TranslateScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<TranslateScreen> createState() => _TranslateScreenState();
 }
 
 class _TranslateScreenState extends State<TranslateScreen> {
-  final englishController = TextEditingController();
+  //FlutterLanguageIdentification languageIdentification = FlutterLanguageIdentification();
+  final sourceController = TextEditingController();
   final vietnameseController = TextEditingController();
   final translator = GoogleTranslator();
-  String english = '';
+  String source = '';
   String vietnamese = '';
+  bool isGottenValueFromMainScreen = false;
+  String sourceLanguage = 'English';
 
   @override
   void initState() {
     super.initState();
     print("-----------ALREADY INITIALIZED-----------");
-    englishController.addListener(_onTextChange);
+    sourceController.addListener(_onTextChange);
     vietnameseController.addListener(_onTextChange);
   }
 
   @override
   void dispose() {
-    englishController.dispose();
+    sourceController.dispose();
     vietnameseController.dispose();
     super.dispose();
   }
@@ -36,21 +43,42 @@ class _TranslateScreenState extends State<TranslateScreen> {
   void _onTextChange() async {
     print("-----------ALREADY SET TEXT CHANGE HANDLE-----------");
     setState(() {
-      english = englishController.text;
+      source = sourceController.text;
     });
-    translator.translate(english, from: 'en', to: 'vi').then((result) {
-      setState(() {
-        vietnamese = result.toString();
-        vietnameseController.text = vietnamese;
-        print(
-          "TRANSLATED: " + vietnamese,
-        );
-      });
+    // String lang = await languageIdentification.identifyLanguage(english);
+    // print ("LANGUAGE: $lang");
+    var result = await translator.translate(source, to: 'vi');
+
+    setState(() {
+      sourceLanguage = result.sourceLanguage.toString();
+      vietnamese = result.text;
+      vietnameseController.value = TextEditingValue(
+        text: vietnamese,
+        selection: TextSelection.fromPosition(
+          TextPosition(offset: vietnamese.length),
+        ),
+      );
     });
+
+    print("LANGUAGE: ${result.sourceLanguage}");
   }
 
   @override
   Widget build(BuildContext context) {
+    //english = widget.searchWords;
+    if (isGottenValueFromMainScreen == false) {
+      final translateString =
+          ModalRoute.of(context)!.settings.arguments as String;
+      source = translateString;
+      sourceController.value = TextEditingValue(
+        text: source,
+        selection: TextSelection.fromPosition(
+          TextPosition(offset: source.length),
+        ),
+      );
+      isGottenValueFromMainScreen = true;
+    }
+
     return Scaffold(
       body: Stack(
         alignment: Alignment.bottomCenter,
@@ -94,28 +122,28 @@ class _TranslateScreenState extends State<TranslateScreen> {
               width: MediaQuery.of(context).size.width - 40,
               height: MediaQuery.of(context).size.height * 0.5,
               child: TextFormField(
-                controller: englishController,
+                controller: sourceController,
                 style: const TextStyle(color: Colors.white, fontSize: 22),
                 keyboardType: TextInputType.multiline,
                 maxLines: 8,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white, width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white, width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Colors.white,
                     fontSize: 22,
                     fontFamily: 'FredokaOne',
                   ),
-                  labelText: 'English',
+                  labelText: sourceLanguage,
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                 ),
               ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 class SearchBackground extends StatelessWidget {
   final Widget searchWidget;
   final Widget listButton;
+
   const SearchBackground({
     Key? key,
     required this.searchWidget,
@@ -27,9 +29,21 @@ class SearchBackground extends StatelessWidget {
               ),
             ),
           ),
-          const Positioned(
-            top: 50,
-            child: Text(
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.06 - 5,
+            left: 10,
+            child: IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.white,
+                size: 34,
+              ),
+              onPressed: () => ZoomDrawer.of(context)!.toggle(),
+            ),
+          ),
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.06,
+            child: const Text(
               "Dictionary",
               style: TextStyle(
                 color: Colors.white,

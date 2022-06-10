@@ -3,8 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:learning_english_flutter_app/screens/dictionary_screen.dart';
 import 'package:learning_english_flutter_app/screens/flash_card_screen.dart';
+import 'package:learning_english_flutter_app/screens/home_screen.dart';
 import 'package:learning_english_flutter_app/screens/login_screen.dart';
+import 'package:learning_english_flutter_app/screens/quiz_catalog_screen.dart';
+import 'package:learning_english_flutter_app/screens/quiz_screen/quiz_screen.dart';
 import 'package:learning_english_flutter_app/screens/sign_up_screen.dart';
+import 'package:learning_english_flutter_app/screens/translate_screen.dart';
 import 'package:learning_english_flutter_app/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -55,7 +59,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           fontFamily: 'OpenSans',
-          primaryColor:  const Color.fromRGBO(104, 105, 173, 1),
+          primaryColor: const Color.fromRGBO(104, 105, 173, 1),
           textTheme: const TextTheme(
             headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
             headline2: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
@@ -70,6 +74,9 @@ class MyApp extends StatelessWidget {
           DictionaryScreen.routeName: (context) => const DictionaryScreen(),
           FlashCardScreen.routeName: (context) => const FlashCardScreen(),
           IntroductionOfFlashCard.routeName: (context) => const IntroductionOfFlashCard(),
+          HomeScreen.routeName: (context) => const HomeScreen(),
+          TranslateScreen.routeName: (context) => TranslateScreen(),
+          QuizScreen.routeName: (context) => const QuizScreen(),
         },
         home: const MyHomePage(),
       ),
@@ -82,6 +89,6 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const IntroductionOfFlashCard();
+    return const OnBoardingScreen();
   }
 }

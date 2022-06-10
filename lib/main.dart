@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:learning_english_flutter_app/screens/dictionary_screen.dart';
 import 'package:learning_english_flutter_app/screens/home_screen.dart';
 import 'package:learning_english_flutter_app/screens/login_screen.dart';
+import 'package:learning_english_flutter_app/screens/quiz_catalog_screen.dart';
+import 'package:learning_english_flutter_app/screens/quiz_screen/quiz_screen.dart';
 import 'package:learning_english_flutter_app/screens/sign_up_screen.dart';
 import 'package:learning_english_flutter_app/screens/translate_screen.dart';
 import 'package:learning_english_flutter_app/screens/welcome_screen.dart';
@@ -70,6 +72,7 @@ class MyApp extends StatelessWidget {
           DictionaryScreen.routeName: (context) => const DictionaryScreen(),
           HomeScreen.routeName: (context) => const HomeScreen(),
           TranslateScreen.routeName: (context) => TranslateScreen(),
+          QuizScreen.routeName: (context) => const QuizScreen(),
         },
         home: const MyHomePage(),
       ),
@@ -83,6 +86,6 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const OnBoardingScreen();
-    return const TranslateScreen();
+    return const QuizCatalogScreen();
   }
 }

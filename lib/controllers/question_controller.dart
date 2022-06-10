@@ -18,7 +18,7 @@ class QuestionController extends GetxController
 
   PageController? get pageController => this._pageController;
 
-  List<Question> _questions = sample_data
+  List<Question> _questions = data
       .map(
         (question) => Question(
           id: question['is'],
@@ -105,6 +105,10 @@ class QuestionController extends GetxController
 
   void updateTheQuestionNumber(int index){
     _questionNumber.value = index + 1;
+  }
+
+  static void disposeController(){
+    Get.delete<QuestionController>();
   }
 
 }

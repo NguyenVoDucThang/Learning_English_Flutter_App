@@ -80,7 +80,7 @@ class _MeaningWordItemState extends State<MeaningWordItem> {
                         : phonetics[widgetIndex].audio;
                     playAudio(path as String);
                   },
-                  icon: const Icon(Icons.audiotrack),
+                  icon: const Icon(Icons.volume_up_rounded),
                 )
               ],
             ),

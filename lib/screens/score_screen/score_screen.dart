@@ -6,10 +6,12 @@ import '../../constants/constants.dart';
 import '../../controllers/question_controller.dart';
 
 class ScoreScreen extends StatelessWidget {
+  static const routeName = '/score_screen';
   const ScoreScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     QuestionController _qnController = Get.put(QuestionController());
     return Scaffold(
       body: Stack(

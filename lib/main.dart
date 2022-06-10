@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:learning_english_flutter_app/screens/dictionary_screen.dart';
+import 'package:learning_english_flutter_app/screens/flash_card_screen.dart';
 import 'package:learning_english_flutter_app/screens/login_screen.dart';
 import 'package:learning_english_flutter_app/screens/sign_up_screen.dart';
 import 'package:learning_english_flutter_app/screens/welcome_screen.dart';
@@ -10,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'helpers/auth_services.dart';
 import 'helpers/facebook_auth_controller.dart';
 import 'helpers/google_auth_controller.dart';
+import 'screens/introduction_of_flash_card_screen.dart';
 import 'models/user_model.dart';
 import 'screens/on_boarding_screen.dart';
 
@@ -66,6 +68,8 @@ class MyApp extends StatelessWidget {
           LoginScreen.routeName: (context) => const LoginScreen(),
           SignUpScreen.routeName: (context) => const SignUpScreen(),
           DictionaryScreen.routeName: (context) => const DictionaryScreen(),
+          FlashCardScreen.routeName: (context) => const FlashCardScreen(),
+          IntroductionOfFlashCard.routeName: (context) => const IntroductionOfFlashCard(),
         },
         home: const MyHomePage(),
       ),
@@ -78,6 +82,6 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const OnBoardingScreen();
+    return const IntroductionOfFlashCard();
   }
 }

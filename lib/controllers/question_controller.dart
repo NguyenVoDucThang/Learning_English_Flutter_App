@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:learning_english_flutter_app/screens/quiz_screen/quiz_screen.dart';
 
+import '../helpers/navigator_helper.dart';
 import '../models/question_model.dart';
 import '../screens/score_screen/score_screen.dart';
 
@@ -98,17 +100,17 @@ class QuestionController extends GetxController
       );
       _animationController!.reset();
       _animationController!.forward().whenComplete(nextQuestion);
+    } else {
+      Navigator.pushNamed(
+          NavigationService.navigatorKey.currentContext!, ScoreScreen.routeName);
     }
-
-    Get.to(ScoreScreen());
   }
 
-  void updateTheQuestionNumber(int index){
+  void updateTheQuestionNumber(int index) {
     _questionNumber.value = index + 1;
   }
 
-  static void disposeController(){
+  static void disposeController() {
     Get.delete<QuestionController>();
   }
-
 }

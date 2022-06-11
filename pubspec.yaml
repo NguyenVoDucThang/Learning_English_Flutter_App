@@ -116,6 +116,9 @@ flutter:
    - family: Cream
      fonts:
        - asset: assets/fonts/Script/script_font.otf
+   - family: Arial Unicode MS
+     fonts:
+       - asset: assets/fonts/Arial Unicode MS/ArialUnicodeMS.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

@@ -33,14 +33,14 @@ class CustomCardWord extends StatelessWidget {
                 Text(
                   data[index].word as String,
                   style: const TextStyle(
-                    fontSize: 30,
+                    fontSize: 34,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 const Spacer(),
                 IconButton(
                   onPressed: playAudio,
-                  icon: const Icon(Icons.volume_down_rounded),
+                  icon: const Icon(Icons.volume_up_rounded),
                 ),
               ],
             ),
@@ -48,14 +48,14 @@ class CustomCardWord extends StatelessWidget {
               data[index].phonetics![index].text!,
               style: const TextStyle(
                 color: Color.fromRGBO(97, 97, 97, 1.0),
-                fontSize: 18,
+                fontSize: 22,
               ),
             ),
-            const SizedBox(height: 18),
+            const SizedBox(height: 22),
             Text(data[index].meanings![index].definitions![index].definition!,
               style: const TextStyle(
                 color: Color.fromRGBO(111, 111, 111, 1),
-                fontSize: 14,
+                fontSize: 18,
               ),),
           ],
         ),

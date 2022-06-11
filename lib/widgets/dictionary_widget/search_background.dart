@@ -4,11 +4,13 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 class SearchBackground extends StatelessWidget {
   final Widget searchWidget;
   final Widget listButton;
+  final VoidCallback openDrawer;
 
   const SearchBackground({
     Key? key,
     required this.searchWidget,
     required this.listButton,
+    required this.openDrawer,
   }) : super(key: key);
 
   @override
@@ -29,18 +31,18 @@ class SearchBackground extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            top: MediaQuery.of(context).size.height * 0.06 - 5,
-            left: 10,
-            child: IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: Colors.white,
-                size: 34,
-              ),
-              onPressed: () => ZoomDrawer.of(context)!.toggle(),
-            ),
-          ),
+          // Positioned(
+          //   top: MediaQuery.of(context).size.height * 0.06 - 5,
+          //   left: 10,
+          //   child: IconButton(
+          //     icon: const Icon(
+          //       Icons.menu,
+          //       color: Colors.white,
+          //       size: 34,
+          //     ),
+          //     onPressed: openDrawer,
+          //   ),
+          // ),
           Positioned(
             top: MediaQuery.of(context).size.height * 0.06,
             child: const Text(

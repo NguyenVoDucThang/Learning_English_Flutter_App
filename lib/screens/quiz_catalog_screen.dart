@@ -5,8 +5,11 @@ import 'package:learning_english_flutter_app/models/question_model.dart';
 import 'package:learning_english_flutter_app/screens/quiz_screen/quiz_screen.dart';
 
 import '../controllers/question_controller.dart';
+import 'drawer_screen.dart';
 
 class QuizCatalogScreen extends StatefulWidget {
+  static const String routeName = '/quiz_screen';
+
   const QuizCatalogScreen({Key? key}) : super(key: key);
 
   @override
@@ -19,6 +22,7 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerScreen(),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -81,7 +85,7 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
                             ],
                           ),
                           color: Colors.white,
-                          borderRadius: BorderRadius.all(
+                          borderRadius: const BorderRadius.all(
                             Radius.circular(20),
                           ),
                         ),
@@ -101,12 +105,12 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   Text(
                                     "Level: " + catalog.description,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 20,
                                       color: Colors.black87,
                                     ),
@@ -118,7 +122,7 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
                                 right: 5,
                                 child: Text(
                                   catalog.questionData.length.toString() + " Questions",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     color: Colors.white.withOpacity(0.9),
                                   ),

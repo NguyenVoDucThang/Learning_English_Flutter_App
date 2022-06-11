@@ -11,7 +11,7 @@ class WordOfTheDayText extends StatelessWidget {
           child: Text(
             "Word of the day",
             style: TextStyle(
-              fontSize: 30,
+              fontSize: 34,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -23,7 +23,7 @@ class WordOfTheDayText extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.grey,
-              fontSize: 15,
+              fontSize: 19,
               fontWeight: FontWeight.w500 ,
             ),
           ),

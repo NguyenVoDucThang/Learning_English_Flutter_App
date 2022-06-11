@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:learning_english_flutter_app/helpers/dictionary_service.dart';
 import 'package:learning_english_flutter_app/models/dictionary_model.dart';
 
+import '../../screens/translate_screen.dart';
 import 'custom_card.dart';
 import 'meaning_word.dart';
 
@@ -48,7 +49,11 @@ class DictionaryBody extends StatelessWidget {
               ),
             );
           } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
+            // return Text(snapshot.error.toString());
+            Navigator.pushNamed(context, '/translate_screen',
+                arguments: inputController.text);
+            inputController.text = '';
+            return const SizedBox();
           } else {
             return const CircularProgressIndicator();
           }

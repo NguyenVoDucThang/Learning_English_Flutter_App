@@ -8,6 +8,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:learning_english_flutter_app/widgets/on_boarding_widget/rounded_button.dart';
 import 'package:translator/translator.dart';
 
+import 'drawer_screen.dart';
+
 class TranslateScreen extends StatefulWidget {
   static const String routeName = '/translate_screen';
 
@@ -91,6 +93,7 @@ class _TranslateScreenState extends State<TranslateScreen> {
     }
 
     return Scaffold(
+      drawer: const DrawerScreen(),
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [

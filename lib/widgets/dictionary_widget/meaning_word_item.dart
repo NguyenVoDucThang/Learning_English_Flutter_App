@@ -68,7 +68,7 @@ class _MeaningWordItemState extends State<MeaningWordItem> {
                   capitalize(meanings[widgetIndex].partOfSpeech!),
                   style: const TextStyle(
                       color: Color.fromRGBO(96, 98, 125, 1),
-                      fontSize: 18,
+                      fontSize: 22,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Roboto'),
                 ),
@@ -84,13 +84,14 @@ class _MeaningWordItemState extends State<MeaningWordItem> {
                 )
               ],
             ),
+            const SizedBox(height: 4),
             Row(
               children: [
                 Text(
                   capitalize(word),
                   style: const TextStyle(
                       color: Color.fromRGBO(142, 142, 170, 1),
-                      fontSize: 16,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Roboto'),
                 ),
@@ -100,11 +101,11 @@ class _MeaningWordItemState extends State<MeaningWordItem> {
                       ? phonetics[0].text!
                       : phonetics[widgetIndex].text as String,
                   style: const TextStyle(
-                      color: Colors.grey, fontSize: 16, fontFamily: 'Roboto'),
+                      color: Colors.grey, fontSize: 18, fontFamily: 'Roboto'),
                 ),
               ],
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 14),
             ListView.separated(
               padding: const EdgeInsets.symmetric(vertical: 0),
               shrinkWrap: true,
@@ -121,7 +122,8 @@ class _MeaningWordItemState extends State<MeaningWordItem> {
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontFamily: 'Roboto',
-                    fontSize: 12,
+                    fontSize: 16,
+                    letterSpacing: 0.8,
                     color: Colors.grey,
                   ),
                 );

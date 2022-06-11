@@ -8,7 +8,8 @@ class CustomResetButton extends StatelessWidget {
   const CustomResetButton({
     Key? key,
     required this.label,
-    required this.onPressed, required this.icon,
+    required this.onPressed,
+    required this.icon,
   }) : super(key: key);
 
   @override
@@ -48,6 +49,5 @@ class CustomResetButton extends StatelessWidget {
         onPressed: onPressed,
       ),
     );
-    ;
   }
 }

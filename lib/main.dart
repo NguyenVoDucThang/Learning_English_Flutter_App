@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:learning_english_flutter_app/screens/dictionary_screen.dart';
 import 'package:learning_english_flutter_app/screens/flash_card_screen.dart';
-import 'package:learning_english_flutter_app/screens/home_screen.dart';
 import 'package:learning_english_flutter_app/screens/login_screen.dart';
 import 'package:learning_english_flutter_app/screens/quiz_catalog_screen.dart';
 import 'package:learning_english_flutter_app/screens/quiz_screen/quiz_screen.dart';
@@ -58,6 +57,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
+          visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'OpenSans',
           primaryColor: const Color.fromRGBO(104, 105, 173, 1),
           textTheme: const TextTheme(
@@ -74,8 +74,7 @@ class MyApp extends StatelessWidget {
           DictionaryScreen.routeName: (context) => const DictionaryScreen(),
           FlashCardScreen.routeName: (context) => const FlashCardScreen(),
           IntroductionOfFlashCard.routeName: (context) => const IntroductionOfFlashCard(),
-          HomeScreen.routeName: (context) => const HomeScreen(),
-          TranslateScreen.routeName: (context) => TranslateScreen(),
+          TranslateScreen.routeName: (context) => const TranslateScreen(),
           QuizScreen.routeName: (context) => const QuizScreen(),
         },
         home: const MyHomePage(),
@@ -89,6 +88,6 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const OnBoardingScreen();
+    return  const OnBoardingScreen();
   }
 }

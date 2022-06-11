@@ -11,7 +11,7 @@ class WrapChipWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 8,
+      spacing: 14,
       runSpacing: 0,
       children: List<Widget>.generate(listString.length, (int index) {
         return Chip(
@@ -19,7 +19,7 @@ class WrapChipWidget extends StatelessWidget {
             listString[index],
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 12,
+              fontSize: 16,
               fontFamily: 'Roboto',
               fontWeight: FontWeight.w500,
             ),

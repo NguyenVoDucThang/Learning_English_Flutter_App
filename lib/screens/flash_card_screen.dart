@@ -1,8 +1,13 @@
+import 'dart:ffi';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:english_words/english_words.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../models/flash_card_model.dart';
 import '../widgets/flash_card_widget/flash_card_body.dart';
+import 'drawer_screen.dart';
 
 class FlashCardScreen extends StatefulWidget {
   static const String routeName = '/flash_card_screen';
@@ -14,28 +19,20 @@ class FlashCardScreen extends StatefulWidget {
 }
 
 class _FlashCardScreenState extends State<FlashCardScreen> {
+  int indexOfFlashcard = 0;
   List<String> listRandomWord = [];
+  int _currentIndex = 0;
 
   @override
-  void initState() {
-    // TODO: implement initState
-    generateNous();
+  initState() {
     super.initState();
+    generateNous();
   }
-
-  generateNous() {
-    print("==================================");
-    nouns.take(5).forEach((element) {
-      print(element);
-      listRandomWord.add(element.toString());
-    });
-  }
-
-  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerScreen(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -80,13 +77,37 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
     });
   }
 
-  void refreshWord() {}
+  void refreshWord() {
+    listRandomWord.clear();
+    indexOfFlashcard += 5;
+
+    setState(() {
+      _currentIndex = 0;
+      int i = 0;
+      nouns.take(1000).forEach((element) {
+        if (i > indexOfFlashcard && listRandomWord.length < 5) {
+          listRandomWord.add(element);
+        }
+        i++;
+      });
+    });
+  }
 
   void previousCard() {
     setState(() {
       _currentIndex = (_currentIndex - 1 >= 0)
           ? _currentIndex - 1
           : listRandomWord.length - 1;
+    });
+  }
+
+  void generateNous() {
+    int i = 0;
+    nouns.take(100).forEach((element) {
+      if (i > indexOfFlashcard && listRandomWord.length < 5) {
+        listRandomWord.add(element);
+      }
+      i++;
     });
   }
 }

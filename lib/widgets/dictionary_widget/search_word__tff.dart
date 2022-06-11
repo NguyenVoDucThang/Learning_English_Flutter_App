@@ -15,11 +15,13 @@ import 'custom_square_button.dart';
 class SearchWordTff extends StatefulWidget {
   final TextEditingController inputController;
   final VoidCallback func;
+  final VoidCallback openDrawer;
 
   const SearchWordTff({
     Key? key,
     required this.inputController,
     required this.func,
+    required this.openDrawer,
   }) : super(key: key);
 
   @override
@@ -43,6 +45,7 @@ class _SearchWordTffState extends State<SearchWordTff> {
   @override
   Widget build(BuildContext context) {
     return SearchBackground(
+      openDrawer: widget.openDrawer,
       listButton: Row(
         children: [
           CustomSquareButton(

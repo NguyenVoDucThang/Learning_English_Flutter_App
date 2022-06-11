@@ -61,6 +61,7 @@ class _CustomFontFlashCardState extends State<CustomFontFlashCard> {
           Text(
             widget.word.phonetic as String,
             style: const TextStyle(
+              fontFamily: 'ArialUnicodeMS',
               color: Colors.white54,
               fontWeight: FontWeight.w500,
               fontSize: 23,

@@ -80,6 +80,7 @@ class MyApp extends StatelessWidget {
           TranslateScreen.routeName: (context) => const TranslateScreen(),
           QuizScreen.routeName: (context) => const QuizScreen(),
           ScoreScreen.routeName: (context) => const ScoreScreen(),
+          QuizCatalogScreen.routeName: (context) => const QuizCatalogScreen(),
         },
         home: const MyHomePage(),
       ),

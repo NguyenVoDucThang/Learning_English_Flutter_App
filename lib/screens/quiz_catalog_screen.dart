@@ -8,7 +8,7 @@ import '../controllers/question_controller.dart';
 import 'drawer_screen.dart';
 
 class QuizCatalogScreen extends StatefulWidget {
-  static const String routeName = '/quiz_screen';
+  static const String routeName = '/quiz_catalog_screen';
 
   const QuizCatalogScreen({Key? key}) : super(key: key);
 
@@ -17,8 +17,6 @@ class QuizCatalogScreen extends StatefulWidget {
 }
 
 class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,11 +62,11 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
                         Navigator.pushReplacement<void, void>(
                           context,
                           MaterialPageRoute<void>(
-                            builder: (BuildContext context) => const QuizScreen(),
+                            builder: (BuildContext context) =>
+                                const QuizScreen(),
                           ),
                         );
                       });
-
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 12),
@@ -91,7 +89,9 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 18, vertical: 12,),
+                            horizontal: 18,
+                            vertical: 12,
+                          ),
                           child: Stack(
                             children: [
                               Column(
@@ -99,7 +99,7 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
                                 children: [
                                   Text(
                                     "Topic: " + catalog.title,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.black87,
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,
@@ -121,8 +121,9 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
                                 bottom: 5,
                                 right: 5,
                                 child: Text(
-                                  catalog.questionData.length.toString() + " Questions",
-                                  style: const TextStyle(
+                                  catalog.questionData.length.toString() +
+                                      " Questions",
+                                  style:  TextStyle(
                                     fontSize: 16,
                                     color: Colors.white.withOpacity(0.9),
                                   ),
@@ -132,7 +133,8 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
                                 top: 8,
                                 right: 0,
                                 child: Text(
-                                  (catalog.questionData.length * 1).toString() + " Min",
+                                  (catalog.questionData.length * 1).toString() +
+                                      " Min",
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,

@@ -97,7 +97,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
             height: 1,
             thickness: 1,
           ),
-          const SizedBox(height: 375),
+          const SizedBox(height: 330),
           Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 20,

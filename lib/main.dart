@@ -6,6 +6,7 @@ import 'package:learning_english_flutter_app/screens/flash_card_screen.dart';
 import 'package:learning_english_flutter_app/screens/login_screen.dart';
 import 'package:learning_english_flutter_app/screens/quiz_catalog_screen.dart';
 import 'package:learning_english_flutter_app/screens/quiz_screen/quiz_screen.dart';
+import 'package:learning_english_flutter_app/screens/score_screen/score_screen.dart';
 import 'package:learning_english_flutter_app/screens/sign_up_screen.dart';
 import 'package:learning_english_flutter_app/screens/translate_screen.dart';
 import 'package:learning_english_flutter_app/screens/welcome_screen.dart';
@@ -14,6 +15,7 @@ import 'package:provider/provider.dart';
 import 'helpers/auth_services.dart';
 import 'helpers/facebook_auth_controller.dart';
 import 'helpers/google_auth_controller.dart';
+import 'helpers/navigator_helper.dart';
 import 'screens/introduction_of_flash_card_screen.dart';
 import 'models/user_model.dart';
 import 'screens/on_boarding_screen.dart';
@@ -55,6 +57,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        navigatorKey: NavigationService.navigatorKey,
         title: 'Flutter Demo',
         theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -76,6 +79,7 @@ class MyApp extends StatelessWidget {
           IntroductionOfFlashCard.routeName: (context) => const IntroductionOfFlashCard(),
           TranslateScreen.routeName: (context) => const TranslateScreen(),
           QuizScreen.routeName: (context) => const QuizScreen(),
+          ScoreScreen.routeName: (context) => const ScoreScreen(),
         },
         home: const MyHomePage(),
       ),

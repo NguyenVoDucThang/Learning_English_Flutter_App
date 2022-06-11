@@ -80,8 +80,8 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [
-                              Colors.white.withOpacity(0.8),
-                              Colors.indigo.withOpacity(0.7),
+                              Colors.white.withOpacity(0.6),
+                              Colors.indigo.withOpacity(0.5),
                             ],
                           ),
                           color: Colors.white,
@@ -91,7 +91,7 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 18, vertical: 12),
+                              horizontal: 18, vertical: 12,),
                           child: Stack(
                             children: [
                               Column(
@@ -100,7 +100,7 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
                                   Text(
                                     "Topic: " + catalog.title,
                                     style: TextStyle(
-                                      color: Colors.black87.withOpacity(0.8),
+                                      color: Colors.black87,
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -124,7 +124,7 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
                                   catalog.questionData.length.toString() + " Questions",
                                   style: const TextStyle(
                                     fontSize: 16,
-                                    color: Colors.white,
+                                    color: Colors.white.withOpacity(0.9),
                                   ),
                                 ),
                               ),
@@ -132,11 +132,11 @@ class _QuizCatalogScreenState extends State<QuizCatalogScreen> {
                                 top: 8,
                                 right: 0,
                                 child: Text(
-                                  (catalog.questionData.length * 5).toString() + " Min",
-                                  style: const TextStyle(
+                                  (catalog.questionData.length * 1).toString() + " Min",
+                                  style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                    color: Colors.white.withOpacity(0.9),
                                   ),
                                 ),
                               ),

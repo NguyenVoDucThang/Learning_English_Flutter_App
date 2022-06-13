@@ -43,15 +43,19 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
               SearchWordTff(
                 inputController: inputController,
                 func: () async {
+                  isWordExisted = true;
                   searchWords = inputController.text;
                   isWordExisted = await isExisted().whenComplete(() {
                     numOfWords = searchWords.split(' ').length;
-                    if (!isWordExisted) {
-                      Navigator.pushNamed(context, '/translate_screen',
-                          arguments: searchWords);
-                      inputController.text = '';
-                    } else if (numOfWords == 1) {
-                      setState(() {});
+                    if (numOfWords == 1 ) {
+                      if (isWordExisted) {
+                        setState(() {});
+                      } else {
+                        Navigator.pushNamed(context, '/translate_screen',
+                            arguments: searchWords);
+                        inputController.text = '';
+                        setState(() {});
+                      }
                     } else {
                       Navigator.pushNamed(context, '/translate_screen',
                           arguments: searchWords);

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:learning_english_flutter_app/models/dictionary_model.dart';
 
 import '../../helpers/dictionary_service.dart';
-import '../../models/flash_card_model.dart';
 import 'custom_flash_card.dart';
 import 'custom_outline_button.dart';
 import 'custom_reset_button.dart';

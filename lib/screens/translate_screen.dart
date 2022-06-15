@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_language_identification/flutter_language_identification.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';

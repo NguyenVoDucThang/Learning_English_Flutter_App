@@ -52,7 +52,6 @@ dependencies:
   flip_card: ^0.6.0
   flutter_zoom_drawer: ^3.0.2
   translator: ^0.1.7
-  flutter_language_identification: ^0.1.0
   flutter_tts: ^3.4.0
   get: ^4.6.1
 

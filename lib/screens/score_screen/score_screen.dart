@@ -40,6 +40,14 @@ class ScoreScreen extends StatelessWidget {
                     color: kSecondaryColor),
               ),
               Spacer(flex: 3),
+              Row(
+                children: [
+                  Spacer(),
+                  IconButton(onPressed: () {
+                    Navigator.pushNamed(context, "/quiz_catalog_screen");
+                  }, icon: const Icon(Icons.home_filled), color: Colors.white54,),
+                ],
+              )
             ],
           ),
         ],
